@@ -1,11 +1,17 @@
 #define NUM_PHIL 4
+byte state[NUM_PHIL];
 
 proctype phil(int id) {
   do 
-    :: printf("thinking\n");
-       /* ... */
-       printf("eating\n");
-       /* ... */
+    :: (state[id % NUM_PHIL] == 0) -> 
+      atomic {
+        state[id] = 1;
+      }
+      printf("eating\n");
+      atomic {
+        state[id] = 0;
+      }
+    ::  else -> printf("thinking\n");
   od
 }
 
