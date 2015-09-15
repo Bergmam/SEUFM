@@ -72,4 +72,12 @@ active proctype Alice() {
 
 active proctype Bob() {
    printf("placeholder for Bob\n")
+
+  /* Initialization  */
+  partnerB = agentA;
+  pkey     = keyA;
+
+
+   /* End */
+   statusB = ok;
 }
