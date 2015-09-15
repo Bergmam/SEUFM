@@ -71,12 +71,39 @@ active proctype Alice() {
 }
 
 active proctype Bob() {
-   printf("placeholder for Bob\n")
+
+  /* Variables */ 
+  mtype pkey;      /* the other agent's public key                 */
+  mtype pnonce;    /* nonce that we receive from the other agent   */
+  Crypt messageBA; /* our encrypted message to the other party     */
+  Crypt data;      /* received encrypted message                   */
+
 
   /* Initialization  */
   partnerB = agentA;
   pkey     = keyA;
 
+  /* Listen to first message */
+  network ? (msg1, agentB, data);
+  pnonce = data.content2;
+
+  /* Prepare second message */
+  assert(data.content2 == nonceA);
+  assert(data.content1 == agentA);
+
+  messageBA.key = pkey;
+  messageBA.content1 = pnonce;
+  messageBA.content2 = nonceB;
+
+  /* Send second message */
+  network ! msg2 (partnerB, messageBA);
+
+  /* Recieve third message */
+  network ? (msg3, agentB, data);
+
+  (data.content1 == nonceB && data.key == keyB);
+
+  printf("Allt gick bra!")
 
    /* End */
    statusB = ok;
