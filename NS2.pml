@@ -108,3 +108,5 @@ active proctype Bob() {
    /* End */
    statusB = ok;
 }
+
+ltl task2 {<> ((statusA == ok) && (statusB == ok))};
