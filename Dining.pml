@@ -3,6 +3,10 @@ byte state[NUM_PHIL];
 /* Ghost variable */
 bit eating[NUM_PHIL];
 
+ltl f1 {[] (state[0] == 1 || state[0] == 0)
+&& (state[1] == 1 || state[1] == 0)
+&& (state[2] == 1 || state[2] == 0)
+&& (state[3] == 1 || state[3] == 0)};
 
 proctype phil(int id) {
   int dir = 1; /* What direction we pick first */
