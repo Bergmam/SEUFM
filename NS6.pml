@@ -112,10 +112,11 @@ active proctype Bob() {
    statusB = ok;
 }
 
+bool knows_nonceA, knows_nonceB;
+
 active proctype Intruder() {
   mtype msg, recpt;
   Crypt data, intercepted;
-  bool knows_nonceA, knows_nonceB;
   do
     :: network ? (msg, _, data) ->
        if /* perhaps store the message */
@@ -173,4 +174,6 @@ active proctype Intruder() {
 }
 
 
-ltl task2 {<> ((statusA == ok) && (statusB == ok))};
+ltl propAB {((statusA == ok) && (statusB == ok)) -> ((partnerA == agentB) && (partnerB == agentA))};
+ltl propA {(statusA == ok && partnerA == agentB) -> !knows_nonceA};
+ltl propB {(statusB == ok && partnerB == agentA) -> !knows_nonceB}
