@@ -1,0 +1,46 @@
+=================================
+
+Anton Bergman & Emil Kristiansson
+
+=================================
+
+Task 2.
+
+We used the LTL formula:
+<>((statusA == ok) && (statusB == ok))
+
+We used the verification property acceptance to ensure liveness.
+
+
+Task 3.
+
+We again use acceptance to ensure liveness of our property.
+
+Spin Trail:
+-------------------------------------------------------------
+#processes: 3
+		partnerA = agentB
+		partnerB = agentA
+		statusA = err
+		statusB = err
+ 28:	proc  2 (Intruder:1) NS.pml:149 (state 34)
+ 28:	proc  1 (Bob:1) NS.pml:97 (state 8)
+ 28:	proc  0 (Alice:1) NS.pml:39 (state 6)
+ 28:	proc  - (task2:1) _spin_nvr.tmp:3 (state 3)
+3 processes created
+--------------------------------------------------------------
+
+This means that Alice thinks that she is talking to Bob
+, but the intruder intercepts the message and thus Alice's and Bob's statuses will never be OK.
+
+
+Task 6.
+How did we verify the 3 formulas. Include spin trail
+
+We verified the three formulas using the acceptance mode.
+It should always hold that if the right side of the implication somewhere in the code is true, 
+	the left side of the implication should also be true.
+
+
+Task 7.
+//Effect of patch.

@@ -1,0 +1,36 @@
+=================================
+
+Anton Bergman & Emil Kristiansson
+
+=================================
+
+1.
+Assertions were inserted to check that each philosopher picks up the forks next to him exactly one time.
+
+assert(state[id] == 1);
+assert(state[(id+1)%NUM_PHIL] == 1);
+
+To check the fork to the right and to the left.
+
+2.
+a)
+Deadlocks could occur if all philosophers started by picking up the fork on the same side simoultaneously, then drop it, retry and so on. 
+This was avoided in our program by telling the first philosopher to pick up the fork on one side, and then the rest picks up on the other side, thus breaking the symmetry of the problem.
+
+b)
+
+
+
+3.
+The LTL formula we use is: 
+[] (state[0] == 1 || state[0] == 0)
+&& (state[1] == 1 || state[1] == 0)
+&& (state[2] == 1 || state[2] == 0)
+&& (state[3] == 1 || state[3] == 0)
+
+To simply check that no fork is held by more than one philosopher at the same time, 
+and also that a fork has not been released several times by the philosophers (>0)
+
+We used the verification property blablabla... because blablabla....
+
+
