@@ -9,7 +9,7 @@ Task 2.
 We used the LTL formula:
 <>((statusA == ok) && (statusB == ok))
 
-We used the verification property acceptance to ensure liveness.
+We used the acceptence verification property to ensure liveness.
 
 
 Task 3.
@@ -31,16 +31,16 @@ Spin Trail:
 --------------------------------------------------------------
 
 This means that Alice thinks that she is talking to Bob
-, but the intruder intercepts the message and thus Alice's and Bob's statuses will never be OK.
+	, but the intruder intercepts the message and thus Alice's and Bob's statuses will never be OK.
 
 
 Task 6.
-How did we verify the 3 formulas. Include spin trail
 
-We verified the three formulas using the acceptance mode.
+We verified the three formulas using the acceptance mode together with weak fairness.
 It should always hold that if the right side of the implication somewhere in the code is true, 
 	the left side of the implication should also be true.
 
+We do not produce any errors with acceptance or safety with or without weak fairness.
 
 Task 7.
-//Effect of patch.
+The fix makes the mad-in-the-middle attack impossible since both A and B know who they are supposed to be talking to.

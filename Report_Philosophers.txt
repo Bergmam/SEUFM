@@ -18,7 +18,7 @@ Deadlocks could occur if all philosophers started by picking up the fork on the 
 This was avoided in our program by telling the first philosopher to pick up the fork on one side, and then the rest picks up on the other side, thus breaking the symmetry of the problem.
 
 b)
-
+We run the Spin web interface on our code and it always succeeds while giving us no deadlock warnings.
 
 
 3.
@@ -31,6 +31,6 @@ The LTL formula we use is:
 To simply check that no fork is held by more than one philosopher at the same time, 
 and also that a fork has not been released several times by the philosophers (>0)
 
-We used the verification property blablabla... because blablabla....
+We used the safety verification property to test this since we want to state that something good happens throughout each run. 
 
 
