@@ -42,5 +42,7 @@ It should always hold that if the right side of the implication somewhere in the
 
 We do not produce any errors with acceptance or safety with or without weak fairness.
 
+The trails for the Spin verification of the respective properties can be found in the files "propAB trail.txt", "propA trail.txt", "propB trail.txt" 
+
 Task 7.
 The fix makes the mad-in-the-middle attack impossible since both A and B know who they are supposed to be talking to.
