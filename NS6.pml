@@ -119,19 +119,24 @@ active proctype Intruder() {
   Crypt data, intercepted;
   do
     :: network ? (msg, _, data) ->
+
        if /* perhaps store the message */
          :: (data.key == keyI) -> 
+
+            if
+            /* Does not need to check for agentB since we know A is the one initializing communication*/
+              :: msg == msg1 && data.content1 == agentA -> knows_nonceA = true; 
+
+              /* If msg == msg2, we do not get any information */
+
+              /* Need to make sure communication is coming from agentB via his nonce*/
+              :: msg == msg3 && data.content1 == nonceB -> knows_nonceB = true; 
+              :: else -> ;
+            fi;
+
             intercepted.key   = data.key;
             intercepted.content1 = data.content1;
             intercepted.content2 = data.content2;
-        
-            if
-              :: data.content1 == agentA ->
-                knows_nonceA = true;
-              :: data.content2 == agentB ->
-                knows_nonceB = true;
-              :: else -> ;
-            fi
          :: else -> ;
        fi ;
 
