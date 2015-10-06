@@ -36,8 +36,9 @@ active proctype Alice() {
   /* Prepare the first message */
   
   messageAB.key = pkey;
-  messageAB.content1 = agentA;
-  messageAB.content2 = nonceA;  
+  messageAB.content1 = agentA;  
+  messageAB.content2 = nonceA;
+  messageAB.content3 = agentB;  
 
   /* Send the first message to the other party */
   
@@ -56,9 +57,9 @@ active proctype Alice() {
 
   (data.key == keyA) && (data.content1 == nonceA);
 
-  /* Patch */
+ /* Patch */
 
-  data.content3 == partnerA;
+  data.content3 == partnerA;  
 
   /* Obtain Bob's nonce */
   
@@ -101,7 +102,6 @@ active proctype Bob() {
   messageBA.key = pkey;
   messageBA.content1 = pnonce;
   messageBA.content2 = nonceB;
-  messageBA.content3 = agentB;
 
   /* Send second message */
   network ! msg2 (partnerB, messageBA);
@@ -124,19 +124,24 @@ active proctype Intruder() {
   Crypt data, intercepted;
   do
     :: network ? (msg, _, data) ->
+
        if /* perhaps store the message */
          :: (data.key == keyI) -> 
+
+            if
+            /* Does not need to check for agentB since we know A is the one initializing communication*/
+              :: msg == msg1 && data.content1 == agentA -> knows_nonceA = true; 
+
+              /* If msg == msg2, we do not get any information */
+
+              /* Need to make sure communication is coming from agentB via his nonce*/
+              :: msg == msg3 && data.content1 == nonceB -> knows_nonceB = true; 
+              :: else -> ;
+            fi;
+
             intercepted.key   = data.key;
             intercepted.content1 = data.content1;
             intercepted.content2 = data.content2;
-        
-            if
-              :: data.content1 == agentA ->
-                knows_nonceA = true;
-              :: data.content2 == agentB ->
-                knows_nonceB = true;
-              :: else -> ;
-            fi
          :: else -> ;
        fi ;
 
@@ -160,6 +165,8 @@ active proctype Intruder() {
               :: data.content1 = agentB;
               :: data.content1 = agentI;
               :: data.content1 = nonceI;
+              :: knows_nonceA -> data.content1 = nonceA;
+              :: knows_nonceB -> data.content2 = nonceB;
             fi ;     
             if /* assemble key */
               :: data.key = keyA;
@@ -168,12 +175,12 @@ active proctype Intruder() {
             fi ;
 
             if
-              :: (data.content1 == agentA && knows_nonceA) ->
+              :: knows_nonceA ->
                 data.content2 = nonceA;
                 data.content3 = agentI;
-              :: (data.content1 == agentB && knows_nonceB) ->
+              :: knows_nonceB ->
                 data.content2 = nonceB;
-              :: else -> data.content2 = nonceI;
+              :: data.content2 = nonceI;
             fi
        fi ;
       network ! msg (recpt, data);
@@ -181,6 +188,6 @@ active proctype Intruder() {
 }
 
 
-ltl propAB {((statusA == ok) && (statusB == ok)) -> ((partnerA == agentB) && (partnerB == agentA))};
-ltl propA {(statusA == ok && partnerA == agentB) -> !knows_nonceA};
-ltl propB {(statusB == ok && partnerB == agentA) -> !knows_nonceB}
+ltl propAB {[](((statusA == ok) && (statusB == ok)) -> ((partnerA == agentB) && (partnerB == agentA)))};
+ltl propA {[]((statusA == ok && partnerA == agentB) -> !knows_nonceA)};
+ltl propB {[]((statusB == ok && partnerB == agentA) -> !knows_nonceB)}
