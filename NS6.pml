@@ -159,6 +159,8 @@ active proctype Intruder() {
               :: data.content1 = agentB;
               :: data.content1 = agentI;
               :: data.content1 = nonceI;
+              :: knows_nonceA -> data.content1 = nonceA;
+              :: knows_nonceB -> data.content2 = nonceB;
             fi ;     
             if /* assemble key */
               :: data.key = keyA;
@@ -167,11 +169,11 @@ active proctype Intruder() {
             fi ;
 
             if
-              :: (data.content1 == agentA && knows_nonceA) ->
+              :: knows_nonceA ->
                 data.content2 = nonceA;
-              :: (data.content1 == agentB && knows_nonceB) ->
+              :: knows_nonceB ->
                 data.content2 = nonceB;
-              :: else -> data.content2 = nonceI;
+              :: data.content2 = nonceI;
             fi
        fi ;
       network ! msg (recpt, data);
@@ -179,6 +181,6 @@ active proctype Intruder() {
 }
 
 
-ltl propAB {((statusA == ok) && (statusB == ok)) -> ((partnerA == agentB) && (partnerB == agentA))};
-ltl propA {(statusA == ok && partnerA == agentB) -> !knows_nonceA};
-ltl propB {(statusB == ok && partnerB == agentA) -> !knows_nonceB}
+ltl propAB {[](((statusA == ok) && (statusB == ok)) -> ((partnerA == agentB) && (partnerB == agentA)))};
+ltl propA {[]((statusA == ok && partnerA == agentB) -> !knows_nonceA)};
+ltl propB {[]((statusB == ok && partnerB == agentA) -> !knows_nonceB)}
