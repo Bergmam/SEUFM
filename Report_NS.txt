@@ -39,13 +39,13 @@ and corresponding in B will not pass for B, and might not pass for A => Locking 
 
 Task 6.
 
-We verified the three formulas using the safety mode together without weak fairness, as the formula allways should apply.
+We verified the three formulas using the safety mode without weak fairness, as the formulae always should apply.
 It should always hold that if the right side of the implication somewhere in the code is true, 
 	the left side of the implication should also be true.
 
 The trails for the Spin verification of the respective properties can be found in the files "propAB trail.txt", "propA trail.txt", "propB trail.txt"
 
-propAB and B does not hold.
+propAB and propB does not hold.
 
 propAB is violated when A talks to I and B thunks he's talking to A.
 
