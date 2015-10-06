@@ -39,13 +39,19 @@ and corresponding in B will not pass for B, and might not pass for A => Locking 
 
 Task 6.
 
-We verified the three formulas using the acceptance mode together with weak fairness.
+We verified the three formulas using the safety mode together without weak fairness, as the formula allways should apply.
 It should always hold that if the right side of the implication somewhere in the code is true, 
 	the left side of the implication should also be true.
 
-We do not produce any errors with acceptance or safety with or without weak fairness.
+The trails for the Spin verification of the respective properties can be found in the files "propAB trail.txt", "propA trail.txt", "propB trail.txt"
 
-The trails for the Spin verification of the respective properties can be found in the files "propAB trail.txt", "propA trail.txt", "propB trail.txt" 
+propAB and B does not hold.
+
+propAB is violated when A talks to I and B thunks he's talking to A.
+
+propB is violated when B is ok while thinking he's talking to A and A thinks he's talking to I.
+
+propA holds. 
 
 Task 7.
 The fix makes the mad-in-the-middle attack impossible since both A and B know who they are supposed to be talking to.
