@@ -27,8 +27,4 @@ spin: trail ends after 76 steps
 		statusB = ok
 		knows_nonceA = 1
 		knows_nonceB = 1
- 76:	proc  2 (Intruder:1) promela_e1_else.pml:179 (state 52)
- 76:	proc  1 (Bob:1) promela_e1_else.pml:113 (state 13) <valid end state>
- 76:	proc  0 (Alice:1) promela_e1_else.pml:75 (state 20)
- 76:	proc  - (propB:1) _spin_nvr.tmp:20 (state 6)
 3 processes created
