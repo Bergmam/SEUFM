@@ -9,7 +9,7 @@ Task 2.
 We used the LTL formula:
 <>((statusA == ok) && (statusB == ok))
 
-We used the acceptence verification property to ensure liveness.
+We used the acceptence verification mode to ensure liveness (no starvation). We did not use weak fairness.
 
 
 Task 3.
@@ -33,6 +33,9 @@ Spin Trail:
 This means that Alice thinks that she is talking to Bob
 	, but the intruder intercepts the message and thus Alice's and Bob's statuses will never be OK.
 
+As in this trace where the intruder intecepts the key, the check:
+  (data.key == keyA) && (data.content1 == nonceA);
+and corresponding in B will not pass for B, and might not pass for A => Locking bot processes.
 
 Task 6.
 
