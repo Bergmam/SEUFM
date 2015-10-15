@@ -5,14 +5,16 @@ Anton Bergman & Emil Kristiansson
 =================================
 
 Task 2.
+==========================================================================================================================
 
 We used the LTL formula:
 <>((statusA == ok) && (statusB == ok))
 
-We used the acceptence verification mode to ensure liveness (no starvation). We did not use weak fairness.
+We used the acceptence verification mode to ensure there is no starvation. We did not use weak fairness, since B must wait for A to send and A must then again wait for B to send back. There is no need for a process to get priority since both are always waiting for the other.
 
 
 Task 3.
+==========================================================================================================================
 
 We again use acceptance to ensure liveness of our property.
 
@@ -35,23 +37,41 @@ This means that Alice thinks that she is talking to Bob
 
 As in this trace where the intruder intecepts the key, the check:
   (data.key == keyA) && (data.content1 == nonceA);
-and corresponding in B will not pass for B, and might not pass for A => Locking bot processes.
+and corresponding in B will not pass for B, and might not pass for A => Locking both processes.
 
 Task 6.
-
-We verified the three formulas using the safety mode together without weak fairness, as the formula allways should apply.
+==========================================================================================================================
+We verified the three formulas using the safety mode without weak fairness, as the formulae always should apply.
 It should always hold that if the right side of the implication somewhere in the code is true, 
 	the left side of the implication should also be true.
 
 The trails for the Spin verification of the respective properties can be found in the files "propAB trail.txt", "propA trail.txt", "propB trail.txt"
 
-propAB and B does not hold.
 
-propAB is violated when A talks to I and B thunks he's talking to A.
+propAB does not hold when A thinks she is talking to I, but at the same time B thinks he is talking to A. In fact, I has acted as a man-in-the-middle, replicating the information he got from A and forwarded it to B. Both statuses will be ok, but the partners will not be correct.
 
-propB is violated when B is ok while thinking he's talking to A and A thinks he's talking to I.
+propAB:
+partnerA = agentI
+		partnerB = agentA
+		statusA = ok
+		statusB = ok
+		knows_nonceA = 1
+		knows_nonceB = 1
 
 propA holds. 
 
+
+Again, I is acting as the man-in the middle, stealing information from A and passing it to B. B thinks he is talking to A, and thus statusB will be ok. B thinks he is talking to A, and thus partnerB = agentA, but I has full information about B's nonce, and thus propB does not hold.
+
+propB:
+partnerA = agentI
+		partnerB = agentA
+		statusA = err
+		statusB = ok
+		knows_nonceA = 1
+		knows_nonceB = 1
+
+
 Task 7.
-The fix makes the mad-in-the-middle attack impossible since both A and B know who they are supposed to be talking to.
+==========================================================================================================================
+The fix makes the man-in-the-middle attack impossible since both A and B know who they are supposed to be talking to. The identity of the sender is encrypted into the message, which makes it impossible for I to send another nonce than his own nonce. 
