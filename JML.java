@@ -113,13 +113,13 @@ public class NumericTextBox
 	 *
 	 * also
 	 *
-	 * @ public normal_behaviour
+	 * @ public exceptional_behaviour
 	 * @ requires !isSingleDigit(input)
 	 * @ ensures textBoxRenderer.showError
 	 *
 	 * also
 	 *
-	 * @ public normal_behaviour
+	 * @ public exceptional_behaviour
 	 * @ requires cursorPosition == content.size-1
 	 * @ ensures textBoxRender.showError
 	 */
