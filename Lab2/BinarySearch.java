@@ -64,7 +64,7 @@ public class BinarySearch {
 	private void eliminateDuplicates(int[] numbers) {
 		int i = 0;
        /* @ loop_invariant
-          @  i>0 -> (numbers[i-1] != numbers[i])
+          @  i>0 -> (numbers[i-1] != numbers[i]);
 	  	  @ assignable i, j, size;
         */
 		while (i < numbers.length - 1) {
@@ -110,11 +110,6 @@ public class BinarySearch {
 		int leftIndex = 0;
 		int rightIndex = size;
 
-		/*
-			@loop invariant
-			@ 0 <= leftIndex && !(rightIndex < leftIndex)
-			FIXA SKIT HÄR
-		 */
 		while (leftIndex <= rightIndex) {
 			int index = leftIndex + ((rightIndex - leftIndex) / 2);
 			if (numbers[index] < query) {
