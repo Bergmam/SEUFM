@@ -63,10 +63,6 @@ public class BinarySearch {
 	  @*/
 	private void eliminateDuplicates(int[] numbers) {
 		int i = 0;
-       /* @ loop_invariant
-          @  i>0 -> (numbers[i-1] != numbers[i]);
-	  	  @ assignable i, j, size;
-        */
 		while (i < numbers.length - 1) {
 			if (i >= size)
 				break;

@@ -42,7 +42,7 @@ public class Drawing{
 	int i = 0;
 	/*@ loop_invariant
 	  @ 0 <= i && i < canvas[depth].length + 1
-	  @        && (\forall int x; 0 <= x && x <= i; canvas[depth][x] == true);
+	  @        && (\forall int x; 0 <= x && x < canvas[depth].length; canvas[depth][x] == true);
 	  @ assignable canvas[depth][*];
 	  @ decreasing (canvas[depth].length) - i;
 	  @*/
