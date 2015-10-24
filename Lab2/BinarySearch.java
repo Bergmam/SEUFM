@@ -61,8 +61,8 @@ public class BinarySearch {
       @ signals (RuntimeException) size == -1;
 	  @ assignable size;
 	  @*/
-	private void eliminateDuplicates(int[] numbers) {
-		if(numbers != null || numbers.length == 0) {
+	private void eliminateDuplicates(int[] numbers) throws RuntimeException{
+		if(numbers != null && numbers.length == 0) {
 			throw new RuntimeException("");
 		}
 
