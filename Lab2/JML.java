@@ -24,20 +24,20 @@ public class NumericTextBox
 	 * Note that the number of possible cursor positions is greater by one than
 	 * the length of the text box.
 	 */
-	private int cursorPosition;
+	private /* @spec_public */ int cursorPosition;
 	
 	/**
 	 * This array stores the contents of the text box. At every position
 	 * before the cursor, there is a valid value (i.e. a single digit).
 	 * Positions after the cursor must be EMPTY.
 	 */
-	private int[] content;
+	private /* @spec_public */ int[] content;
 	
 	/**
 	 * Holds the current TextBoxRenderer. This can be null, which means that there
 	 * is no renderer assigned.
 	 */
-	private TextBoxRenderer textBoxRenderer;
+	private /* @spec_public */ TextBoxRenderer textBoxRenderer;
 	
 	/**
 	 * Gets the currently assigned TextBoxRenderer.
