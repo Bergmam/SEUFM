@@ -8,10 +8,17 @@ This gives us a lot of implications on the left side which we can use impLeft to
 
 
 2
-
+Not much to say except what you can see that we did in the .java file.
+We made private variables spec_public so that jml can access the. Specified normal and exceptional beahviour where needed.
 
 3.1
 
 3.2
 
+
+
 3.3
+
+a) We ran the test and used the contracts.
+
+b) The small misstake was a misscalculation in the loop counter.
