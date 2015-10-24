@@ -1,0 +1,13 @@
+THINGS TO ASK AT F.A.Q
+=====================================
+
+3.1 
+Vi vet inte hur man verifyar. Fastnar på konstiga saker
+-------------------------------------------------------------------
+
+3.2 
+Hur verifyar man? Fastnar på konstiga saker. Är vår låtsas-java rätt?
+--------------------------------------------------------------------
+
+3.3b
+Vi har ändrat, får det inte att fungera. wat do?
