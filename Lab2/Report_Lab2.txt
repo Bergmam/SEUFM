@@ -9,11 +9,18 @@ We are a bit unefficient, as sometimes the same rules are applied in both cases 
 were applied before splitting the proof into different cases.
 
 2
-
+Not much to say except what you can see that we did in the .java file.
+We made private variables spec_public so that jml can access the. Specified normal and exceptional beahviour where needed.
 
 3.1
 We inline the method on unimportant things such as printing, and use the method contract otherwise.
 
 3.2
 
+
+
 3.3
+
+a) We ran the test and used the contracts.
+
+b) The small misstake was a misscalculation in the loop counter.
