@@ -1,0 +1,17 @@
+Software Enginering Using Formal Methods Lab 2
+Anton Bergman & Emil Kristiansson
+============================================
+
+1
+We start by breaking up the right side of the expression, and move everything to the left side using the notRight rule.
+This gives us a lot of implications on the left side which we can use impLeft to close.
+
+
+2
+
+
+3.1
+
+3.2
+
+3.3
