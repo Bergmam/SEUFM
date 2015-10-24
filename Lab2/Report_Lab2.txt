@@ -5,12 +5,14 @@ Anton Bergman & Emil Kristiansson
 1
 We start by breaking up the right side of the expression, and move everything to the left side using the notRight rule.
 This gives us a lot of implications on the left side which we can use impLeft to close.
-
+We are a bit unefficient, as sometimes the same rules are applied in both cases at a branch. We would create fewer total steps if these rules
+were applied before splitting the proof into different cases.
 
 2
 
 
 3.1
+We inline the method on unimportant things such as printing, and use the method contract otherwise.
 
 3.2
 
